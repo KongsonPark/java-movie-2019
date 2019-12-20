@@ -9,16 +9,13 @@ import java.util.List;
 
 public class MovieApplication {
 	public static void main(String[] args) {
-		List<Movie> movies = MovieRepository.getMovies();
 		Reservation reservation = new Reservation();
-		int movieId;
 		do {
+			List<Movie> movies = MovieRepository.getMovies();
 			OutputView.printMovies(movies);
-			movieId = InputView.inputMovieId(movies);
+			int movieId = InputView.inputMovieId(movies);
 			reservation.reserveMovie(movies, movieId);
 		} while (InputView.inputPayOrReserve());
-
-		reservation.printReservationResult();
 
 		double totalTickets = reservation.getTotalTicketMoney();
 		int point = InputView.inputPoint();

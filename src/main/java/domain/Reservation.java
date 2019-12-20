@@ -18,6 +18,7 @@ public class Reservation {
 			int time = InputView.inputMovieSchedule(selectedMovie, reservationMovieList);
 			int tickets = InputView.inputMovieTickets(selectedMovie, time);
 			addToReservedMovieList(selectedMovie, time, tickets);
+			printReservationResult();
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 		}
@@ -37,7 +38,7 @@ public class Reservation {
 		return selectedMovie;
 	}
 
-	public void printReservationResult() {
+	private void printReservationResult() {
 		for (ReservationMovie reservationMovie : reservationMovieList) {
 			System.out.println(reservationMovie);
 		}
