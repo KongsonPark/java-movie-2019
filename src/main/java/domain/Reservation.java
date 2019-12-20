@@ -22,7 +22,6 @@ public class Reservation {
 				new ReservationSchedule(selectedMovie.getPlaySchedule(time).getStartDateTime(), tickets)));
 
 		System.out.println(selectedMovie);
-
 	}
 
 	private Movie selectMovie(List<Movie> movies, int movieId) {
@@ -32,4 +31,5 @@ public class Reservation {
 			.get(0);
 		return selectedMovie;
 	}
+
 }

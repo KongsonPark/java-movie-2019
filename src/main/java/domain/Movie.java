@@ -43,7 +43,7 @@ public class Movie {
 	}
 
 	public boolean isAvailableSchedule(int scheduleIndex) {
-		return playSchedules.size() >= scheduleIndex && scheduleIndex != 0;
+		return playSchedules.size() >= scheduleIndex && scheduleIndex > 0;
 	}
 
 	@Override
