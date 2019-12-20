@@ -11,9 +11,10 @@ public class MovieApplication {
 	public static void main(String[] args) {
 		List<Movie> movies = MovieRepository.getMovies();
 		Reservation reservation = new Reservation();
+		int movieId;
 		do {
 			OutputView.printMovies(movies);
-			int movieId = InputView.inputMovieId(movies);
+			movieId = InputView.inputMovieId(movies);
 			reservation.reserveMovie(movies, movieId);
 		} while (InputView.inputPayOrReserve());
 

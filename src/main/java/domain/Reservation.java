@@ -11,17 +11,22 @@ public class Reservation {
 	List<ReservationMovie> reservationMovieList = new ArrayList<>();
 
 	public void reserveMovie(List<Movie> movies, int movieId) {
-		Movie selectedMovie = selectMovie(movies, movieId);
-		System.out.println(selectedMovie);
+		try {
+			checkDuplicatedMovie(movieId);
+			Movie selectedMovie = selectMovie(movies, movieId);
+			System.out.println(selectedMovie);
+			int time = InputView.inputMovieSchedule(selectedMovie);
+			int tickets = InputView.inputMovieTickets(selectedMovie, time);
+			addToReservedMovieList(selectedMovie, time, tickets);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
-		int time = InputView.inputMovieSchedule(selectedMovie);
-		int tickets = InputView.inputMovieTickets(selectedMovie, time);
-
+	private void addToReservedMovieList(Movie selectedMovie, int time, int tickets) {
 		reservationMovieList.add(
 			new ReservationMovie(selectedMovie.getId(), selectedMovie.getName(), selectedMovie.getPrice(),
 				new ReservationSchedule(selectedMovie.getPlaySchedule(time).getStartDateTime(), tickets)));
-
-		System.out.println(selectedMovie);
 	}
 
 	private Movie selectMovie(List<Movie> movies, int movieId) {
@@ -44,6 +49,12 @@ public class Reservation {
 			total += reservationMovie.getPrice() * (reservationMovie.getPlaySchedule().getCapacity());
 		}
 		return total;
+	}
+
+	public void checkDuplicatedMovie(int movieId) {
+		if (reservationMovieList.stream().anyMatch(reservationMovie -> reservationMovie.containId(movieId))) {
+			throw new IllegalArgumentException("일행과 같은 영화를 선택할 수 없습니다.");
+		}
 	}
 
 }
