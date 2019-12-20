@@ -1,5 +1,7 @@
 package domain;
 
+import utils.DateTimeUtils;
+
 public class ReservationMovie extends Movie {
 	private static final char NEW_LINE = '\n';
 
@@ -12,6 +14,11 @@ public class ReservationMovie extends Movie {
 
 	public PlaySchedule getPlaySchedule() {
 		return playSchedule;
+	}
+
+	public boolean checkTime(PlaySchedule playSchedule) {
+		return DateTimeUtils.isOneHourWithinRange(this.playSchedule.getStartDateTime(),
+			playSchedule.getStartDateTime());
 	}
 
 	@Override

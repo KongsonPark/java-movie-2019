@@ -15,7 +15,7 @@ public class Reservation {
 			checkDuplicatedMovie(movieId);
 			Movie selectedMovie = selectMovie(movies, movieId);
 			System.out.println(selectedMovie);
-			int time = InputView.inputMovieSchedule(selectedMovie);
+			int time = InputView.inputMovieSchedule(selectedMovie, reservationMovieList);
 			int tickets = InputView.inputMovieTickets(selectedMovie, time);
 			addToReservedMovieList(selectedMovie, time, tickets);
 		} catch (IllegalArgumentException e) {

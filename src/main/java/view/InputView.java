@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import domain.Movie;
+import domain.ReservationMovie;
 
 public class InputView {
 	private static final Scanner scanner = new Scanner(System.in);
@@ -26,21 +27,25 @@ public class InputView {
 		}
 	}
 
-	public static int inputMovieSchedule(Movie selectedMovie) {
+	public static int inputMovieSchedule(Movie selectedMovie, List<ReservationMovie> reservationMovieList) {
 		System.out.println("예약할 시간표를 선택하세요");
 		try {
 			int movieTime = validateNumber(scanner.nextLine().trim());
-			validateSchedule(selectedMovie, movieTime);
+			validateSchedule(selectedMovie, movieTime, reservationMovieList);
 			return movieTime;
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			return inputMovieSchedule(selectedMovie);
+			return inputMovieSchedule(selectedMovie, reservationMovieList);
 		}
 	}
 
-	private static void validateSchedule(Movie selectedMovie, int time) {
+	private static void validateSchedule(Movie selectedMovie, int time, List<ReservationMovie> reservationMovieList) {
 		if (!selectedMovie.isAvailableSchedule(time)) {
 			throw new IllegalArgumentException("상영 시간표에 없는 시간입니다.");
+		}
+		if (!reservationMovieList.stream()
+			.allMatch(reservationMovie -> reservationMovie.checkTime(selectedMovie.getPlaySchedule(time)))) {
+			throw new IllegalArgumentException("일행과 한 시간 이상 차이나는 영화입니다.");
 		}
 	}
 
