@@ -1,3 +1,4 @@
+import Pay.Pay;
 import domain.Movie;
 import domain.MovieRepository;
 import domain.Reservation;
@@ -9,7 +10,7 @@ import java.util.List;
 public class MovieApplication {
 	public static void main(String[] args) {
 		List<Movie> movies = MovieRepository.getMovies();
-        Reservation reservation = new Reservation();
+		Reservation reservation = new Reservation();
 		do {
 			OutputView.printMovies(movies);
 			int movieId = InputView.inputMovieId(movies);
@@ -18,8 +19,9 @@ public class MovieApplication {
 
 		reservation.printReservationResult();
 
-		System.out.println("결제 진행");
-
-		// TODO 구현 진행
+		double totalTickets = reservation.getTotalTicketMoney();
+		int point = InputView.inputPoint();
+		int paymentType = InputView.inputPaymentType();
+		Pay.printPaymentResult(paymentType, totalTickets, point);
 	}
 }

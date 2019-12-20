@@ -38,4 +38,12 @@ public class Reservation {
 		}
 	}
 
+	public double getTotalTicketMoney() {
+		double total = 0;
+		for (ReservationMovie reservationMovie : reservationMovieList) {
+			total += reservationMovie.getPrice() * (reservationMovie.getPlaySchedule().getCapacity());
+		}
+		return total;
+	}
+
 }

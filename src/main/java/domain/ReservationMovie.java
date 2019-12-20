@@ -10,6 +10,10 @@ public class ReservationMovie extends Movie {
 		this.playSchedule = schedule;
 	}
 
+	public PlaySchedule getPlaySchedule() {
+		return playSchedule;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
