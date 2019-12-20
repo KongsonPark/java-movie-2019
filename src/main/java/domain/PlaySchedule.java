@@ -17,6 +17,10 @@ public class PlaySchedule {
 		return startDateTime;
 	}
 
+	public int getCapacity() {
+		return capacity;
+	}
+
 	public void reduceCapacity(int tickets) {
 		if (capacity < tickets) {
 			throw new IllegalArgumentException("인원 대비 자리가 부족합니다.");

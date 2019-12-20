@@ -32,4 +32,10 @@ public class Reservation {
 		return selectedMovie;
 	}
 
+	public void printReservationResult() {
+		for (ReservationMovie reservationMovie : reservationMovieList) {
+			System.out.println(reservationMovie);
+		}
+	}
+
 }

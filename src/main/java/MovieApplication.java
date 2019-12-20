@@ -9,12 +9,14 @@ import java.util.List;
 public class MovieApplication {
 	public static void main(String[] args) {
 		List<Movie> movies = MovieRepository.getMovies();
+        Reservation reservation = new Reservation();
 		do {
 			OutputView.printMovies(movies);
 			int movieId = InputView.inputMovieId(movies);
-			Reservation reservation = new Reservation();
 			reservation.reserveMovie(movies, movieId);
 		} while (InputView.inputPayOrReserve());
+
+		reservation.printReservationResult();
 
 		System.out.println("결제 진행");
 
