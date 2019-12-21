@@ -1,9 +1,6 @@
-package Pay;
-
-import view.InputView;
+package pay;
 
 public class Pay {
-
 	private static final double CREDIT_CARD_DISCOUNT = 0.95;
 	private static final double CASH_DISCOUNT = 0.98;
 	private static final double CREDIT_CARD = 1;

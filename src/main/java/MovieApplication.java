@@ -1,4 +1,4 @@
-import Pay.Pay;
+import pay.Pay;
 import domain.Movie;
 import domain.MovieRepository;
 import domain.Reservation;
